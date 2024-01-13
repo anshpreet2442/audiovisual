@@ -201,7 +201,7 @@ let drawVisual = null
 const processAudio = mp3 => {
   let audio = null
   if(mp3 === 'default'){
-    audio = new Audio('https://dll.spotifymate.com/mdelta.123tokyo.xyz/get.php/f/43/Tvs_wRjMrt0.mp3?cid=MmEwMTo0Zjg6YzAxMjozOWJlOjoxfE5BfERF&h=o-hzIzie7wnOji3ouk5K1w&s=1703230753&n=SpotifyMate.com%20-%20Off%20Roading%20-%20Khan%20Bhaini&cid2=ODEuMTcxLjI5LjE2fE5MfFJJQUU3QzMwMTc5MkE4Mjgw&fn=1')
+    audio = new Audio('https://cdnsongs.com/dren/music/data/Single_Track/201701/Ishqan_De_Lekhe/320/Ishqan_De_Lekhe_1.mp3/Ishqan%20De%20Lekhe.mp3')
     audio.crossOrigin = 'anonymous'
   }
   else{
