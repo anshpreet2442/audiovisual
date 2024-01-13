@@ -1,0 +1,369 @@
+ <!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Audio Visualizer w/ ParticlesJS</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet"><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#FFA500"> <!-- Set the theme color to orange (#FFA500) -->
+   <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/10477/10477837.png">
+
+
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="wrapper">
+  <div id="drop-zone-wrapper">
+    <div id="drop-zone">
+      <div id="label"><i class="fa fa-cloud-upload"></i>
+        <h1>Drop MP3 Here</h1>
+      </div>
+    </div>
+    <div id="alternate-option"><i class="fa fa-music"></i>
+      <h1>Or Use Default Song</h1>
+    </div>
+  </div>
+  <div class="hidden" id="center-logo">
+    <div id="audio-canvas-wrapper">
+      <canvas id="audio-canvas"></canvas>
+    </div>
+    <div id="text">
+      <h1>IIT</h1>
+      <h1>VLOGS</h1>
+    </div>
+  </div>
+  <div class="particles" id="particles-slow"></div>
+  <div class="particles initial hidden" id="particles-fast"></div>
+  <div id="reset">
+    <h1>Reset</h1>
+  </div>
+</div>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js'></script>
+<script src='https://codepen.io/Hyperplexed/pen/QOvrzd/0299c8b36352c72cbfe8df48b47b54ca.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    .context-menu {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 10px;
+      animation: ambientGlow 5s infinite alternate;
+    }
+
+    @keyframes ambientGlow {
+      0% {
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+      }
+      100% {
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+      }
+    }
+
+    .menu-button {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      text-align: left;
+      cursor: pointer;
+      border: none;
+      background: none;
+      outline: none;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .menu-button:hover {
+      background: rgba(0, 123, 255, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+<div class="context-menu" id="customContextMenu">
+  <button class="menu-button" onclick="shareOnWhatsApp()">Share on WhatsApp</button>
+  <button class="menu-button" onclick="showMessage()">DEVELOPER</button>
+</div>
+
+<script>
+  // Function to show the custom context menu
+  function showContextMenu(e) {
+    e.preventDefault();
+    const contextMenu = document.getElementById('customContextMenu');
+    contextMenu.style.left = `${e.clientX}px`;
+    contextMenu.style.top = `${e.clientY}px`;
+    contextMenu.style.display = 'block';
+  }
+
+  // Function to hide the custom context menu
+  function hideContextMenu() {
+    const contextMenu = document.getElementById('customContextMenu');
+    contextMenu.style.display = 'none';
+  }
+
+  // Function to share the page on WhatsApp
+  function shareOnWhatsApp() {
+    // Open WhatsApp or display a share dialog with the page URL
+    const pageURL = encodeURIComponent(window.location.href);
+    const message = encodeURIComponent('Visualize your audio with https://etus.link/visualaudios. Developed by Anshpreet');
+    const whatsappURL = `https://api.whatsapp.com/send?text=${message}`;
+    window.open(whatsappURL, '_blank');
+    hideContextMenu();
+  }
+
+  // Function to show a message
+  function showMessage() {
+    alert('This page is made by Anshpreet');
+    hideContextMenu();
+  }
+
+  // Attach context menu event listeners
+  document.addEventListener('contextmenu', showContextMenu);
+  document.addEventListener('click', hideContextMenu);
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+<audio id="myAudio" src="https://drive.google.com/uc?export=download&id=1DHJ5_fYNc3Mpu8EXSAF4o2Sqqdt6dB6b" preload="auto"></audio>
+
+<script>
+  const audio = document.getElementById('myAudio');
+  const keysToListen = [
+    'Space', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL',
+    'ShiftLeft', 'OSLeft', 'AltLeft', 'Enter', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5',
+    'Escape', 'KeyW', 'ControlLeft', 'KeyW', 'KeyA'
+    // Add more keys as needed in the same format
+  ];
+
+  document.addEventListener('keydown', function(event) {
+    const key = event.code;
+    if (keysToListen.includes(key)) {
+      audio.play();
+    }
+  });
+</script>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donation Popup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      bottom: 20px; /* Adjust as needed */
+      left: 20px; /* Adjust as needed */
+      width: 100%;
+      max-width: 400px;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: flex-start;
+      overflow-y: auto;
+      box-sizing: border-box;
+      z-index: 999; /* Ensure it's above other elements */
+    }
+
+    .popup-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+
+    .donation-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    /* ... (your existing code for donation button styles) ... */
+
+    .donate-image {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      cursor: pointer;
+      width: 50px;
+      height: auto;
+      z-index: 1000; /* Ensure it's above other elements */
+    }
+
+
+
+
+
+
+
+    html, body {
+      height: 100%;
+    }
+
+    .wrap {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button {
+      width: 140px;
+      height: 45px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-weight: 500;
+      color: #000;
+      background-color: #fff;
+      border: none;
+      border-radius: 45px;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+      outline: none;
+      }
+
+    .button:hover {
+      background-color: #2EE59D;
+      box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+      color: #fff;
+      transform: translateY(-7px);
+    }
+
+
+
+    
+  </style>
+
+</head>
+<body>
+
+<!-- Donation Popup -->
+  <div id="donationPopup" class="popup">
+    <div class="popup-content">
+      <span class="close-btn" class="button" onclick="closePopup()">X</span>
+      <h2>Select Donation Amount</h2>
+      <label><input type="checkbox" class="donation-checkbox" value="25" onclick="handleCheckboxClick(this)"> Rs 25</label>
+      <label><input type="checkbox" class="donation-checkbox" value="50" onclick="handleCheckboxClick(this)"> Rs 50</label>
+      <label><input type="checkbox" class="donation-checkbox" value="85" onclick="handleCheckboxClick(this)"> Rs 85</label>
+      <label><input type="checkbox" class="donation-checkbox" value="100" onclick="handleCheckboxClick(this)"> Rs 100</label>
+      <label><input type="checkbox" class="donation-checkbox" value="200" onclick="handleCheckboxClick(this)"> Rs 200</label>
+      <label><input type="checkbox" class="donation-checkbox" value="400" onclick="handleCheckboxClick(this)"> Rs 400</label>
+      <h3>Donation Privileges:</h3>
+      <p>For amounts over Rs 500, you will receive special privileges, including early access to videos and notifications via SMS and email.</p>
+      <form id="upiForm" style="display: inline-block;">
+        <input type="hidden" id="selectedAmount" name="amount">
+        <div class="wrap">
+
+        <button type="button" class="button" onclick="submitUPIForm()">Donate Now</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Donation Image Button -->
+  <img class="donate-image" src="https://cdn-icons-png.flaticon.com/512/9908/9908271.png" alt="Donate" onclick="openPopup()">
+
+  <script>
+    function openPopup() {
+      document.getElementById("donationPopup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("donationPopup").style.display = "none";
+    }
+
+    function handleCheckboxClick(checkbox) {
+      // Uncheck other checkboxes
+      var checkboxes = document.querySelectorAll('.donation-checkbox');
+      checkboxes.forEach(function (cb) {
+        if (cb !== checkbox) {
+          cb.checked = false;
+        }
+      });
+
+      // Update the selected amount
+      document.getElementById("selectedAmount").value = checkbox.checked ? checkbox.value : '';
+    }
+
+    function submitUPIForm() {
+      var selectedAmount = getSelectedAmount();
+      if (selectedAmount) {
+        // Replace 'kaur108@paytm' with the actual UPI ID
+        var upiId = 'kaur109@paytm';
+        var amount = selectedAmount;
+        var paymentLink = "upi://pay?pa=" + upiId + "&pn=Anshpreet Singh&mc=123456&tid=123456&tr=123456&tn=Payment%20to%20Anshpreet%20Singh&am=" + amount + "&cu=INR";
+
+        window.location.href = paymentLink;
+      } else {
+        alert("Please select a donation amount.");
+      }
+    }
+
+    function getSelectedAmount() {
+      var checkboxes = document.querySelectorAll('.donation-checkbox:checked');
+      if (checkboxes.length > 0) {
+        return checkboxes[0].value;
+      } else {
+        return null;
+      }
+    }
+  </script>
+
+</body>
+</html>
