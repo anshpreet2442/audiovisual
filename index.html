@@ -30,10 +30,108 @@
     <div id="audio-canvas-wrapper">
       <canvas id="audio-canvas"></canvas>
     </div>
-    <div id="text">
-      <h1>IIT</h1>
-      <h1>VLOGS</h1>
-    </div>
+
+
+
+
+
+
+
+   
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #text {
+      position: relative;
+    }
+
+    #replaceButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #replacePopup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      z-index: 1;
+    }
+
+    #replaceInput {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    #replaceSubmit {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="text">
+  <h1>IIT</h1>
+  <h1>VLOGS</h1>
+</div>
+
+<button id="replaceButton" onclick="showPopup()">Replace Text</button>
+
+<div id="replacePopup">
+  <label for="replaceInput">Enter new text:</label>
+  <input type="text" id="replaceInput">
+  <button id="replaceSubmit" onclick="replaceText()">Replace</button>
+</div>
+
+<script>
+  function showPopup() {
+    document.getElementById('replacePopup').style.display = 'block';
+  }
+
+  function replaceText() {
+    var userInput = document.getElementById('replaceInput').value;
+    if (userInput.trim() !== '') {
+      document.querySelectorAll('#text h1').forEach(function (element) {
+        element.textContent = userInput;
+      });
+    }
+    document.getElementById('replacePopup').style.display = 'none';
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+   
   </div>
   <div class="particles" id="particles-slow"></div>
   <div class="particles initial hidden" id="particles-fast"></div>
