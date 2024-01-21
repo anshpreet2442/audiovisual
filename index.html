@@ -17,12 +17,27 @@
 <!-- partial:index.partial.html -->
 <div id="wrapper">
   <div id="drop-zone-wrapper">
-    <div id="drop-zone">
-      <div id="label"><i class="fa fa-cloud-upload"></i>
-        <h1>Drop MP3 Here</h1>
-      </div>
-    </div>
-    <div id="alternate-option"><i class="fa fa-music"></i>
+  <div id="drop-zone" onclick="openFilePicker()">
+  <div id="label">
+    <i class="fa fa-cloud-upload"></i>
+    <h1>Drop MP3 Here</h1>
+  </div>
+  <input type="file" id="file-input" style="display:none" onchange="handleFileSelect()">
+</div>
+
+<script>
+  function openFilePicker() {
+    document.getElementById('file-input').click();
+  }
+
+  function handleFileSelect() {
+    // Add your file handling logic here
+    var selectedFile = document.getElementById('file-input').files[0];
+    console.log('Selected file:', selectedFile);
+    // Add any further processing or uploading logic as needed
+  }
+</script>
+"alternate-option"><i class="fa fa-music"></i>
       <h1>Or Use Default Song</h1>
     </div>
   </div>
